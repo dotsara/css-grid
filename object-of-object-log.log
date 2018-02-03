@@ -1,0 +1,100 @@
+10:40:08.375 const adds
+10:40:08.384 VM123:1 Uncaught SyntaxError: Missing initializer in const declaration
+10:40:31.097 const adds = {}
+10:40:31.103 undefined
+10:40:38.940 typeof adds
+10:40:38.944 "object"
+10:40:57.933 let addrs = {
+      "addresses": {
+      "business": {
+        "city": "Seattle",
+        "country": "US",
+        "state": "WA",
+        "street": [
+          "123 Boot Ln"
+        ],
+        "url": "",
+        "zip": "98107-0000"
+      },
+      "home": {
+        "city": "San Diego",
+        "country": "US",
+        "state": "CA",
+        "street": [
+          "10510 Meanley Drive"
+        ],
+        "url": "",
+        "zip": "92130"
+      },
+      "other": {
+        "city": "Seattle",
+        "country": "US",
+        "state": "WA",
+        "street": [
+          "123 Boot Street"
+        ],
+        "url": "",
+        "zip": "98107"
+      }
+    }
+}
+10:40:57.935 undefined
+10:41:00.619 addrs
+10:41:00.623 {addresses: {…}}addresses: business: {city: "Seattle", country: "US", state: "WA", street: Array(1), url: "", …}home: {city: "San Diego", country: "US", state: "CA", street: Array(1), url: "", …}other: {city: "Seattle", country: "US", state: "WA", street: Array(1), url: "", …}__proto__: constructor: ƒ Object()hasOwnProperty: ƒ hasOwnProperty()isPrototypeOf: ƒ isPrototypeOf()propertyIsEnumerable: ƒ propertyIsEnumerable()toLocaleString: ƒ toLocaleString()toString: ƒ toString()valueOf: ƒ valueOf()__defineGetter__: ƒ __defineGetter__()__defineSetter__: ƒ __defineSetter__()__lookupGetter__: ƒ __lookupGetter__()__lookupSetter__: ƒ __lookupSetter__()get __proto__: ƒ __proto__()set __proto__: ƒ __proto__()__proto__: Objectconstructor: ƒ Object()hasOwnProperty: ƒ hasOwnProperty()isPrototypeOf: ƒ isPrototypeOf()propertyIsEnumerable: ƒ propertyIsEnumerable()toLocaleString: ƒ toLocaleString()toString: ƒ toString()valueOf: ƒ valueOf()__defineGetter__: ƒ __defineGetter__()__defineSetter__: ƒ __defineSetter__()__lookupGetter__: ƒ __lookupGetter__()__lookupSetter__: ƒ __lookupSetter__()get __proto__: ƒ __proto__()set __proto__: ƒ __proto__()
+11:23:25.451 addrs.length
+11:23:25.455 undefined
+11:24:08.416 Object.length(addrs)
+11:24:08.422 VM281:1 Uncaught TypeError: Object.length is not a function
+    at <anonymous>:1:8
+(anonymous) @ VM281:1
+11:24:34.314 Object.values(addrs)
+11:24:34.319 [{…}]0: business: {city: "Seattle", country: "US", state: "WA", street: Array(1), url: "", …}home: {city: "San Diego", country: "US", state: "CA", street: Array(1), url: "", …}other: {city: "Seattle", country: "US", state: "WA", street: Array(1), url: "", …}__proto__: Objectlength: 1__proto__: Array(0)
+11:24:57.117 Object.keys(addrs)
+11:24:57.121 ["addresses"]0: "addresses"length: 1__proto__: Array(0)
+11:25:17.795 Object.keys(addrs["addresses"])
+11:25:17.798 (3) ["business", "home", "other"]0: "business"1: "home"2: "other"length: 3__proto__: Array(0)
+11:27:13.448 Object.keys(addrs["addresses"]).map
+11:27:13.452 ƒ map() { [native code] }
+11:27:33.125 addrs["addresses"]
+11:27:33.129 {business: {…}, home: {…}, other: {…}}
+11:27:42.597 addrs["addresses"]["business"]
+11:27:42.602 {city: "Seattle", country: "US", state: "WA", street: Array(1), url: "", …}city: "Seattle"country: "US"state: "WA"street: ["123 Boot Ln"]url: ""zip: "98107-0000"__proto__: Object
+11:29:40.522 // addrs is an object whose key is "addresses" and whose value is an object of objects ("business", "home", "other")
+11:29:40.529 undefined
+11:30:59.476 // and those objects themselves have a value which is an object.
+11:30:59.480 undefined
+11:31:13.483 // what I want to do is combine the _values_ of addrs["addresses"][OBJECT].keys in a specific order *and* use the OBJECT as a "type" label.
+11:31:13.492 undefined
+11:31:16.521 // thinking
+11:31:16.527 undefined
+11:33:09.191 Object.entries(addrs["addresses"])
+11:33:09.195 (3) [Array(2), Array(2), Array(2)]0: Array(2)0: "business"1: {city: "Seattle", country: "US", state: "WA", street: Array(1), url: "", …}length: 2__proto__: Array(0)1: (2) ["home", {…}]2: (2) ["other", {…}]length: 3__proto__: Array(0)
+11:33:22.455 Object.entries(addrs["addresses"]["business"])
+11:33:22.460 (6) [Array(2), Array(2), Array(2), Array(2), Array(2), Array(2)]0: (2) ["city", "Seattle"]1: (2) ["country", "US"]2: (2) ["state", "WA"]3: Array(2)0: "street"1: ["123 Boot Ln"]length: 2__proto__: Array(0)4: (2) ["url", ""]5: (2) ["zip", "98107-0000"]length: 6__proto__: Array(0)
+11:34:19.731 Array.from(addrs["addresses"]["business"])
+11:34:19.747 []length: 0__proto__: Array(0)
+11:34:28.819 Array.from(addrs["addresses"])
+11:34:28.824 []length: 0__proto__: Array(0)
+11:34:35.065 // heh. no.
+11:34:35.069 undefined
+11:39:31.124 const vals = Object.keys(addrs).map(key => obj[key]);
+11:39:31.129 VM543:1 Uncaught ReferenceError: obj is not defined
+    at Object.keys.map.key (<anonymous>:1:47)
+    at Array.map (<anonymous>)
+    at <anonymous>:1:33
+Object.keys.map.key @ VM543:1
+(anonymous) @ VM543:1
+11:39:37.683 const vals = Object.keys(addrs).map(key => addrs[key]);
+11:39:37.689 VM552:1 Uncaught SyntaxError: Identifier 'vals' has already been declared
+    at <anonymous>:1:1
+(anonymous) @ VM552:1
+11:39:43.207 const vals2 = Object.keys(addrs).map(key => addrs[key]);
+11:39:43.212 undefined
+11:39:48.080 vals2
+11:39:48.085 [{…}]0: business: {city: "Seattle", country: "US", state: "WA", street: Array(1), url: "", …}home: {city: "San Diego", country: "US", state: "CA", street: Array(1), url: "", …}other: {city: "Seattle", country: "US", state: "WA", street: Array(1), url: "", …}__proto__: Objectlength: 1__proto__: Array(0)
+15:08:17.683 let toString = ({state, zip}) =>  {
+   return `The address is: ${state}, ${zip}`
+}
+15:08:17.689 undefined
+15:08:29.922 toString(addrs["addresses"]["business"])
+15:08:29.928 "The address is: WA, 98107-0000"
